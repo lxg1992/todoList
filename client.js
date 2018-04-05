@@ -1,23 +1,24 @@
 var todoList = {
+  //initiliaze todos
   todos: [],
-  curNum: 0,
+
+  //push a new task to todos
   addTodo: function(todoText) {
     
     this.todos.push({
-      id: this.curNum,
       todoText: todoText,
       completed: false
-    });
-    this.curNum++;
-    
-    
+    }); 
   },
+
+  //change a todo at a position
   changeTodo: function(position, todoText) {
     this.todos[position].todoText = todoText;
   },
+
+  //delete a todo at a position
   deleteTodo: function(position) {
     this.todos.splice(position, 1);
-    this.curNum--;
     
   },
   toggleCompleted: function(position) {
@@ -102,7 +103,7 @@ var view = {
         todoLi.className ='list-group-item list-group-item-success';
         todoTextWithCompletion = '['+position+']' + ' (\u2713) ' + todo.todoText;
       } else {
-        todoLi.className ='list-group-item list-group-item-danger';
+        todoLi.className ='list-group-item list-group-item-light';
         todoTextWithCompletion = '['+position+']' + ' (x) ' + todo.todoText;
       }
       
@@ -135,7 +136,7 @@ var view = {
   //Get clicked Element
       var elementClicked = event.target;
   
-  //Check if elementClicked is a delete button or toggle Button
+  
   
       if (elementClicked.classList.contains('deleteButton')){
         handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
@@ -150,6 +151,9 @@ var view = {
 
 view.setUpEventListeners();
 
+//Initial construction from watchandcode
+//CSS Styling as well as optimization and improvements by Alex Garin
+//https://github.com/lxg1992/todoList
 
 
 
