@@ -1,3 +1,6 @@
+
+window.localStorage
+
 var todoList = {
   //initiliaze todos
   todos: [],
@@ -45,6 +48,10 @@ var todoList = {
   }
 };
 
+
+
+
+
 var handlers = {
   addTodo: function() {
     var addTodoTextInput = document.getElementById('addTodoTextInput');
@@ -85,6 +92,8 @@ var handlers = {
     view.displayTodos();
   }  
 };
+
+
 
 var view = {
 
@@ -130,6 +139,15 @@ var view = {
   },
   setUpEventListeners: function(){
     var todosUl = document.querySelector('ul');
+    var addInput = document.getElementById('addTodoTextInput');
+    
+    addInput.addEventListener('keyup',function(e){
+      e.preventDefault();
+
+      if(e.keyCode === 13){
+        handlers.addTodo();
+      }
+    })
 
     todosUl.addEventListener('click', function(event) {
       console.log(event.target.parentNode.id);
@@ -143,13 +161,21 @@ var view = {
       } else if (elementClicked.classList.contains('toggleButton')){
          handlers.singleToggleCompleted(parseInt(elementClicked.parentNode.id));
       }
+
+      
   });
+
+
+
+  
 
     
   }
 };
 
 view.setUpEventListeners();
+
+
 
 //Initial construction from watchandcode
 //CSS Styling as well as optimization and improvements by Alex Garin
